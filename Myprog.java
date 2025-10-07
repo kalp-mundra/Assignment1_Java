@@ -1,8 +1,8 @@
-// for user input
+// for user input 
 import java.util.Scanner;
 
 class Mystring {
-    private String str;  // Stores the actual string value
+    private String str; // Stores the actual string value
 
     // Constructor to initialize string
     Mystring(String str) {
