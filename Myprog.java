@@ -1,8 +1,21 @@
+/**
+ * @class - Mystring
+ * @description - This will perform most of the string operation
+ * @author - Kalp Mundra
+ */
+
+
 // for user input 
 import java.util.Scanner;
 
 class Mystring {
+
     private String str; // Stores the actual string value
+
+    @Override
+    public String toString() {
+        return this.str;
+    }
 
     // Constructor to initialize string
     Mystring(String str) {
@@ -11,7 +24,8 @@ class Mystring {
 
     // Appends another string 'a' to the current string and returns new result
     String append(String a) {
-        return str + a;
+        str+=a;
+        return str;
     }
 
     // Counts total number of words in the string
@@ -41,8 +55,8 @@ class Mystring {
             else
                 res += str.charAt(i);
         }
-        return res;
-
+        str=res;
+        return str;
     }
 
     // Checks whether the string is a palindrome or not
@@ -115,7 +129,8 @@ class Mystring {
         if (start < 0 || start + len > str.length()) return str;
 
         String res = str.substring(0, start) + str.substring(start + len);
-        return res;
+        str=res;
+        return str;
     }
 
     // Finds and returns the character that appears most frequently in the string
@@ -139,7 +154,8 @@ class Mystring {
     // Performs circular left shift by 'n' positions
     String shift(int n) {
         String res = str.substring(n) + str.substring(0, n);
-        return res;
+        str=res;
+        return str;
     }
 
     // Sorts all characters of the string in ascending order (bubble sort)
@@ -160,8 +176,8 @@ class Mystring {
                 }
             }
         }
-
-        return new String(arr);
+        str=new String(arr);
+        return str;
     }
 
     // Reverses the string and returns it
@@ -175,7 +191,8 @@ class Mystring {
         for (int i = str.length() - 1; i >= 0; i--) {
             reversed += str.charAt(i);
         }
-        return reversed;
+        str=reversed;
+        return str;
     }
 }
 
