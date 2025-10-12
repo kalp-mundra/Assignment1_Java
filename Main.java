@@ -4,7 +4,6 @@
  * @author - Kalp Mundra
  */
 
-// for user input 
 import java.util.Scanner;
 
 public class Main {
@@ -18,7 +17,9 @@ public class Main {
         // Step 2: Create Mystring object
         MyString obj = new MyString(inputString);
 
-        int choice;
+        String choiceInput;
+        int choice = -1;
+
         do {
             System.out.println("\n===== STRING OPERATIONS MENU =====");
             System.out.println("1. Append");
@@ -33,8 +34,15 @@ public class Main {
             System.out.println("10. Reverse String");
             System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
-            choice = scanner.nextInt();
-            scanner.nextLine(); // consume newline
+
+            choiceInput = scanner.nextLine();
+
+            // Safe numeric check
+            if (choiceInput.matches("\\d+")) {
+                choice = Integer.parseInt(choiceInput);
+            } else {
+                choice = -1; // invalid input
+            }
 
             switch (choice) {
                 case 1:
@@ -49,9 +57,9 @@ public class Main {
 
                 case 3:
                     System.out.print("Enter character to replace: ");
-                    char oldChar = scanner.next().charAt(0);
+                    char oldChar = scanner.nextLine().charAt(0);
                     System.out.print("Enter new character: ");
-                    char newChar = scanner.next().charAt(0);
+                    char newChar = scanner.nextLine().charAt(0);
                     System.out.println("Updated string: " + obj.replaceCharacters(oldChar, newChar));
                     break;
 
@@ -66,20 +74,19 @@ public class Main {
                         System.out.println("CHECK PALINDROME BY CHARACTERS: ENTER 1");
                         System.out.println("CHECK PALINDROME BY WORDS: ENTER 2");
                         System.out.print("Enter your choice: ");
-                        int select = scanner.nextInt();
+                        String selectInput = scanner.nextLine();
+                        int select = (selectInput.matches("\\d+")) ? Integer.parseInt(selectInput) : -1;
 
-                        if (select == 1) {
-                            if (obj.isPalindromeByCharacter())
-                                System.out.println("The string is a palindrome.");
-                            else
-                                System.out.println("The string is NOT a palindrome.");
-                            break;
-                        } else if (select == 2) {
-                            if (obj.isPalindromeByWords()) {
-                                System.out.println("The string is a palindrome.");
-                            } else {
-                                System.out.println("The string is NOT a palindrome.");
-                            }
+                        if (select == 1 || select == 2) {
+                            boolean isPalindrome = (select == 1)
+                                ? obj.isPalindromeByCharacter()
+                                : obj.isPalindromeByWords();
+
+                            String result = isPalindrome
+                                ? "The string is a palindrome."
+                                : "The string is NOT a palindrome.";
+
+                            System.out.println(result);
                         } else {
                             System.out.println("Not a valid choice");
                         }
@@ -96,20 +103,31 @@ public class Main {
 
                 case 6:
                     System.out.print("Enter start index: ");
-                    int start = scanner.nextInt();
+                    String startInput = scanner.nextLine();
                     System.out.print("Enter length to remove: ");
-                    int length = scanner.nextInt();
-                    System.out.println("Updated string: " + obj.splice(start, length));
+                    String lengthInput = scanner.nextLine();
+                    if (startInput.matches("\\d+") && lengthInput.matches("\\d+")) {
+                        int start = Integer.parseInt(startInput);
+                        int length = Integer.parseInt(lengthInput);
+                        System.out.println("Updated string: " + obj.splice(start, length));
+                    } else {
+                        System.out.println("Invalid input! Please enter numeric values.");
+                    }
                     break;
 
                 case 7:
-                    System.out.println("Max Repeated Character: " + obj.getMaxRepeatCharacter());
+                    System.out.println("Times the Character had repeated: " + obj.getMaxRepeatCharacter());
                     break;
 
                 case 8:
                     System.out.print("Enter number of positions to shift: ");
-                    int shift = scanner.nextInt();
-                    System.out.println("Updated string: " + obj.shiftElements(shift));
+                    String shiftInput = scanner.nextLine();
+                    if (shiftInput.matches("\\d+")) {
+                        int shift = Integer.parseInt(shiftInput);
+                        System.out.println("Updated string: " + obj.shiftElements(shift));
+                    } else {
+                        System.out.println("Invalid input! Please enter a number.");
+                    }
                     break;
 
                 case 9:
@@ -126,6 +144,7 @@ public class Main {
 
                 default:
                     System.out.println("Invalid choice! Please try again.");
+                    System.out.println("Try Again !");
             }
 
         } while (choice != 0);

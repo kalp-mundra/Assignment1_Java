@@ -122,7 +122,7 @@ public class MyString {
     // Removes a particular 'length' characters starting from index 'start' and returns new string
     String splice(int start, int length) {
         // prevents runtime errors on bad input
-        if (start < 0 || start + length > value.length())
+        if (value == null || start < 0 || start >= value.length() || length < 0 || start + length > value.length())
             return value;
 
         String result = value.substring(0, start) + value.substring(start + length);
@@ -131,7 +131,7 @@ public class MyString {
     }
 
     // Finds and returns the character that appears most frequently in the string
-    char getMaxRepeatCharacter() {
+    int getMaxRepeatCharacter() {
         int[] frequency = new int[256]; // Frequency table for ASCII characters
         for (int i = 0; i < value.length(); i++) {
             frequency[value.charAt(i)]++;
@@ -145,11 +145,13 @@ public class MyString {
                 result = value.charAt(i);
             }
         }
-        return result; // If tie, returns the first character with max frequency
+        System.out.println("Maximum repeated Character: " + result);
+        return maximumFrequency; // If tie, returns the first character with max frequency
     }
 
     // Performs circular left shift by 'n' positions
     String shiftElements(int shift) {
+        shift = shift % value.length();
         String result = value.substring(shift) + value.substring(0, shift);
         value = result;
         return value;
