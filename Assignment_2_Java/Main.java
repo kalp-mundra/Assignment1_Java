@@ -1,4 +1,3 @@
-
 /**
  * @filename- Main.java
  * @description- Takes user input and calls the respective string/number operation functions from Operations class
@@ -12,8 +11,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Operations object = new Operations(); // Object to access all operation methods
-        int choice;
-
+        int choice = -1;
+        String choiceInput;
         do {
             // Display menu options
             System.out.println("\n===== STRING OPERATIONS MENU =====");
@@ -29,8 +28,14 @@ public class Main {
             System.out.println("10. Longest Substring Without Repeating Characters");
             System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
-            choice = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline left by nextInt()
+            choiceInput = scanner.nextLine();
+
+            // Safe numeric check
+            if (choiceInput.matches("\\d+")) {
+                choice = Integer.parseInt(choiceInput);
+            } else {
+                choice = -1; // invalid input
+            }
 
             switch (choice) {
                 case 1:
@@ -43,16 +48,21 @@ public class Main {
                 case 2:
                     // Compute Nth Fibonacci number
                     System.out.print("Enter a number: ");
-                    int value = scanner.nextInt();
-                    System.out.println("The Nth Fibonacci Number is : " + object.nthFinonacciNumber(value));
+                    String selectInput = scanner.nextLine();
+                    int value = (selectInput.matches("\\d+")) ? Integer.parseInt(selectInput) : -1;
+                    if (object.nthFinonacciNumber(value) != -1){
+                        System.out.println("The Nth Fibonacci Number is : " + object.nthFinonacciNumber(value));
+                    }
+                    else{
+                        System.out.println("Enter a valid Number !");
+                    }
                     break;
 
                 case 3:
                     // Convert snake_case to camelCase
                     System.out.print("Enter a String in Snake case: ");
                     String inputSnakeCase = scanner.nextLine();
-                    System.out
-                            .println("Updated string to camel case : " + object.conversionToCamelCase(inputSnakeCase));
+                    System.out.println("Updated string to camel case : " + object.conversionToCamelCase(inputSnakeCase));
                     break;
 
                 case 4:
@@ -64,22 +74,21 @@ public class Main {
 
                 case 5:
                     // Convert binary string to decimal number
-                    System.out.println("Enter a number in String form:");
+                    System.out.print("Enter a number in String form:");
                     String number = scanner.nextLine();
-                    System.out
-                            .println("Decimal value corresponding to given number : " + object.binaryToDecimal(number));
+                    System.out.println("Decimal value corresponding to given number : " + object.binaryToDecimal(number));
                     break;
 
                 case 6:
                     // Expand characters based on following digit in string
-                    System.out.println("Enter a string to expand: ");
+                    System.out.print("Enter a string to expand: ");
                     String value2 = scanner.nextLine();
                     System.out.println("Updated string: " + object.expandString(value2));
                     break;
 
                 case 7:
                     // Compress string using character frequency
-                    System.out.println("Enter a string to compress: ");
+                    System.out.print("Enter a string to compress: ");
                     String value3 = scanner.nextLine();
                     System.out.println("Updated string: " + object.compressString(value3));
                     break;
@@ -105,7 +114,7 @@ public class Main {
 
                 case 10:
                     // Find length of longest substring without repeating characters
-                    System.out.println("Enter a string : ");
+                    System.out.print("Enter a string : ");
                     String value4 = scanner.nextLine();
                     System.out.println("Length of longest substring : " + object.lengthOfLongestSubstring(value4));
                     break;

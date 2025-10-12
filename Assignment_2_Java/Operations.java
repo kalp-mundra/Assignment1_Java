@@ -41,6 +41,9 @@ public class Operations {
 
     // Recursive method to find Nth Fibonacci number
     int nthFinonacciNumber(int value) {
+        if (value < 0) {
+            return -1; // invalid input
+        }
         if (value == 0 || value == 1) {
             return value;
         }
@@ -102,22 +105,28 @@ public class Operations {
     // Expand string where character is followed by a digit
     String expandString(String input) {
         String result = "";
+        if (input.length() == 0) {
+            return result;
+        }
         for (int i = 0; i < input.length(); i++) {
             char currentCharacter = input.charAt(i);
 
+            // If next character exists and is a digit
             if (i + 1 < input.length() && Character.isDigit(input.charAt(i + 1))) {
-                int characterCount = input.charAt(i + 1) - '0';
-
-                for (int j = 0; j < characterCount; j++) {
+                int count = input.charAt(i + 1) - '0';
+                for (int j = 0; j < count; j++) {
                     result += currentCharacter;
                 }
-
-                i++; // Skip the digit after processing
+                i++; // Skip the digit since it's already processed
+            } 
+            // If next char is not a digit → just add the character once
+            else {
+                result += currentCharacter;
             }
         }
-
         return result;
     }
+
 
     // Compress string by counting consecutive character frequency
     String compressString(String input) {
