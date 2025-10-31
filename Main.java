@@ -9,6 +9,7 @@ public class Main {
         int choice;
 
         do {
+            // Displaying main menu
             System.out.println("\n1.) The Efficient Traveler");
             System.out.println("2.) The Sum that Stands Out");
             System.out.println("3.) Flip the Switch");
@@ -21,15 +22,16 @@ public class Main {
 
             inputChoice = scanner.nextLine();
 
-            // Safe numeric check
+            // Validate input to ensure only numeric entries are accepted
             if (inputChoice.matches("\\d+")) {
                 choice = Integer.parseInt(inputChoice);
             } else {
-                choice = -1; // invalid input
+                choice = -1; // mark invalid input
             }
 
             switch (choice) {
                 case 1:
+                    // Efficient Traveler — determine farthest city reachable
                     System.out.print("Enter the size of the array: ");
                     int size = scanner.nextInt();
                     scanner.nextLine();
@@ -40,7 +42,6 @@ public class Main {
                     }
 
                     int[] inputArray = new int[size];
-
                     System.out.println("Enter " + size + " elements:");
                     for (int i = 0; i < size; i++) {
                         inputArray[i] = scanner.nextInt();
@@ -51,16 +52,20 @@ public class Main {
 
                     System.out.print("Enter the value of Initial Energy: ");
                     int initialEnergy = scanner.nextInt();
+
+                    // Validate energy before calculation
                     if (initialEnergy <= 0) {
                         System.out.println("Not a valid Initial Energy");
                         break;
                     }
+
                     scanner.nextLine();
                     System.out.println("The Farthest Positions using the Initial Energy : "
                             + array.getFarthestCity(initialEnergy));
                     break;
 
                 case 2:
+                    // Find the index where left and right sums are equal
                     System.out.print("Enter the size of the array: ");
                     size = scanner.nextInt();
                     scanner.nextLine();
@@ -71,7 +76,6 @@ public class Main {
                     }
 
                     int[] inputArray2 = new int[size];
-
                     System.out.println("Enter " + size + " elements:");
                     for (int i = 0; i < size; i++) {
                         inputArray2[i] = scanner.nextInt();
@@ -83,6 +87,7 @@ public class Main {
                     break;
 
                 case 3:
+                    // Find minimum flips required to make binary array uniform
                     System.out.print("Enter the size of the array: ");
                     size = scanner.nextInt();
                     scanner.nextLine();
@@ -93,29 +98,42 @@ public class Main {
                     }
 
                     int[] inputArray3 = new int[size];
-
                     System.out.println("Enter " + size + " elements:");
                     for (int i = 0; i < size; i++) {
                         inputArray3[i] = scanner.nextInt();
                     }
                     scanner.nextLine();
 
+                    int count = 0;
+                    for (int i = 0; i < size; i++) {
+                        if (inputArray3[i] != 0 && inputArray3[i] != 1) {
+                            System.out.println("Enter binary Input only !");
+                            count++;
+                            break;
+                        }
+                    }
+
+                    if (count != 0) {
+                        break;
+                    }
+
                     array.setArray(inputArray3);
                     System.out.println("It requires " + array.minimumFlipsToEqualize() + " flip to become same");
                     break;
 
                 case 4:
+                    // Find the single (non-repeating) element in array
                     System.out.print("Enter the size of the array: ");
                     size = scanner.nextInt();
                     scanner.nextLine();
 
+                    // Ensure array size is valid and odd (for XOR logic)
                     if (size == 0 || size % 2 != 1) {
                         System.out.println("Not Valid !");
                         break;
                     }
 
                     int[] inputArray4 = new int[size];
-
                     System.out.println("Enter " + size + " elements:");
                     for (int i = 0; i < size; i++) {
                         inputArray4[i] = scanner.nextInt();
@@ -127,6 +145,7 @@ public class Main {
                     break;
 
                 case 5:
+                    // Find if any two numbers form a target sum
                     System.out.print("Enter the size of the array: ");
                     size = scanner.nextInt();
                     scanner.nextLine();
@@ -137,7 +156,6 @@ public class Main {
                     }
 
                     int[] inputArray5 = new int[size];
-
                     System.out.println("Enter " + size + " elements:");
                     for (int i = 0; i < size; i++) {
                         inputArray5[i] = scanner.nextInt();
@@ -152,6 +170,7 @@ public class Main {
                     break;
 
                 case 6:
+                    // Painter’s problem — find minimum total painting time
                     System.out.print("Enter the size of the array: ");
                     size = scanner.nextInt();
                     scanner.nextLine();
@@ -162,7 +181,6 @@ public class Main {
                     }
 
                     int[] inputArray6 = new int[size];
-
                     System.out.println("Enter " + size + " elements:");
                     for (int i = 0; i < size; i++) {
                         inputArray6[i] = scanner.nextInt();
@@ -174,6 +192,7 @@ public class Main {
                     break;
 
                 case 7:
+                    // Demonstration of geometry hierarchy (Point, Circle, Square)
                     System.out.println("Enter the Initial and Final Points: ");
                     int[] inputArray7 = new int[4];
                     for (int i = 0; i < 4; i++) {
@@ -182,7 +201,6 @@ public class Main {
                     scanner.nextLine();
 
                     Point point1 = new Point(inputArray7[0], inputArray7[1]);
-
                     Point point2 = new Point(inputArray7[2], inputArray7[3]);
 
                     System.out.println("Enter the radius of the circle: ");
@@ -200,6 +218,7 @@ public class Main {
                     int dy = scanner.nextInt();
                     scanner.nextLine();
 
+                    // Displaying geometry results
                     System.out.println("\nDistance : " + point1.getDistance(point2));
                     System.out.println("Circle Area : " + shape1.get_area());
                     System.out.println("Sqaure Area : " + shape2.get_area());
@@ -208,10 +227,12 @@ public class Main {
                     break;
 
                 case 0:
+                    // Graceful exit
                     System.out.println("Exiting program...");
                     break;
 
                 default:
+                    // Catch-all for invalid numeric input
                     System.out.println("Invalid choice! Please try again.");
             }
 
