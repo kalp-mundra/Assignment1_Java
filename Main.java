@@ -34,7 +34,7 @@ public class Main {
                     int size = scanner.nextInt();
                     scanner.nextLine();
 
-                    if(size == 0){
+                    if (size == 0) {
                         System.out.println("Not Valid !");
                         break;
                     }
@@ -51,7 +51,7 @@ public class Main {
 
                     System.out.print("Enter the value of Initial Energy: ");
                     int initialEnergy = scanner.nextInt();
-                    if(initialEnergy <= 0){
+                    if (initialEnergy <= 0) {
                         System.out.println("Not a valid Initial Energy");
                         break;
                     }
@@ -65,7 +65,7 @@ public class Main {
                     size = scanner.nextInt();
                     scanner.nextLine();
 
-                    if(size == 0){
+                    if (size == 0) {
                         System.out.println("Not Valid !");
                         break;
                     }
@@ -87,7 +87,7 @@ public class Main {
                     size = scanner.nextInt();
                     scanner.nextLine();
 
-                    if(size == 0){
+                    if (size == 0) {
                         System.out.println("Not Valid !");
                         break;
                     }
@@ -109,7 +109,7 @@ public class Main {
                     size = scanner.nextInt();
                     scanner.nextLine();
 
-                    if(size == 0 || size % 2 != 1){
+                    if (size == 0 || size % 2 != 1) {
                         System.out.println("Not Valid !");
                         break;
                     }
@@ -131,7 +131,7 @@ public class Main {
                     size = scanner.nextInt();
                     scanner.nextLine();
 
-                    if(size == 0){
+                    if (size == 0) {
                         System.out.println("Not Valid !");
                         break;
                     }
@@ -156,7 +156,7 @@ public class Main {
                     size = scanner.nextInt();
                     scanner.nextLine();
 
-                    if(size == 0){
+                    if (size == 0) {
                         System.out.println("Not Valid !");
                         break;
                     }
@@ -174,7 +174,6 @@ public class Main {
                     break;
 
                 case 7:
-
                     System.out.println("Enter the Initial and Final Points: ");
                     int[] inputArray7 = new int[4];
                     for (int i = 0; i < 4; i++) {
@@ -190,7 +189,7 @@ public class Main {
                     int radius = scanner.nextInt();
                     scanner.nextLine();
                     Circle shape1 = new Circle(radius);
-                    
+
                     System.out.println("Enter the side of the square: ");
                     int side = scanner.nextInt();
                     scanner.nextLine();

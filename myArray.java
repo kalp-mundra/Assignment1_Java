@@ -65,23 +65,23 @@ public class myArray {
         int unique = 0;
 
         int maxValue = -1;
-        for(int i=0;i<array.length;i++){
-            if(array[i] > maxValue){
-                maxValue = array[i]; 
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] > maxValue) {
+                maxValue = array[i];
             }
         }
 
         int[] hash = new int[maxValue + 1];
-        for(int i=0;i<array.length;i++){
+        for (int i = 0; i < array.length; i++) {
             hash[array[i]]++;
         }
 
-        int count=0;
-        for(int i=0;i<=maxValue;i++){
-            if(hash[i] == 1){
+        int count = 0;
+        for (int i = 0; i <= maxValue; i++) {
+            if (hash[i] == 1) {
                 count++;
             }
-            if(count>1){
+            if (count > 1) {
                 return -1;
             }
         }
@@ -107,7 +107,7 @@ public class myArray {
 
     int findMinimumPaintingTime() {
         int totalSum = 0;
-        
+
         for (int number : array) {
             totalSum += number;
         }
